@@ -1,5 +1,7 @@
 package com.Intive.Patronage.tests.pages;
 
+import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +20,22 @@ public class HomePage {
     private WebElement sendButton;
 
     @FindBy(how = How.CLASS_NAME, using = "alert-danger")
-    private WebElement errorMessage;
+    public WebElement errorField;
+
+    @FindBy(how = How.XPATH, using = "//ol/li[1]")
+    public WebElement alertMessage;
+
+    @FindBy(how = How.ID, using = "email")
+    public WebElement emailAddress;
+
+    @FindBy(how = How.ID, using = "message")
+    public WebElement message;
+
+    @FindBy(how = How.ID, using = "id_contact")
+    public WebElement subject;
+
+    @FindBy(how = How.CLASS_NAME, using = "alert-success")
+    public WebElement successField;
 
     public HomePage(final WebDriver driver) {
         this.driver = driver;
@@ -31,6 +48,20 @@ public class HomePage {
 
     public void clickOnSend() { sendButton.click(); }
 
-    public void isErrorDisplayed() { errorMessage.isDisplayed(); }
+    public void isAlertDisplayed(WebElement element) { element.isDisplayed(); }
 
+    public void isAlertMessageCorrect(String message, WebElement element) {
+        String receivedMessage = element.getText();
+        Assert.assertEquals(message, receivedMessage);
+    }
+
+    public void inputText(String text, WebElement element) {
+        element.sendKeys(text);
+    }
+
+    public void selectValue(WebElement element) {
+        element.click();
+        element.sendKeys(Keys.DOWN);
+        element.sendKeys(Keys.RETURN);
+    }
 }
