@@ -36,4 +36,6 @@ public class GoogleSteps extends DriverFactory {
     public void iOpenFirstLinkFromSearch() {
         googlePage.firstSearchResult.click();
     }
+
+
 }
