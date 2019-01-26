@@ -4,7 +4,7 @@ Feature: As a user I want to be able to contact customer service
     Given User is on automation practice home page
     When I click on contact us link
     And I click on send button
-    Then I see that an error is displayed
+    Then I see that an error pop-up is displayed
 
   Scenario: Send empty form and check the error message
     Given User is on automation practice home page
