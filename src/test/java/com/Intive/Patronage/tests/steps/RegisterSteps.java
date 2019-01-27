@@ -1,6 +1,7 @@
 package com.Intive.Patronage.tests.steps;
 
 import com.Intive.Patronage.tests.DriverFactory;
+import com.Intive.Patronage.tests.pages.AuthenticationPage;
 import com.Intive.Patronage.tests.pages.RegisterPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -13,14 +14,8 @@ public class RegisterSteps extends DriverFactory {
 
     RegisterPage registerPage = new RegisterPage(driver);
 
-    @And("^I click on create an account button$")
-    public void iClickOnCreateAnAccountButton() { registerPage.clickOnButton(registerPage.submitEmail); }
-
     @Then("^I see that an error is displayed$")
     public void iSeeThatAnErrorIsDisplayed() { registerPage.isAlertDisplayed(registerPage.errorField); }
-
-    @And("^I input unused email address$")
-    public void iInputUnusedEmailAddress() { registerPage.inputText(registerPage.generateEmailAddress(), registerPage.emailAddress); }
 
     @And("^I input valid first name$")
     public void iInputValidFirstName() { registerPage.inputText("tmp", registerPage.firstName); }
@@ -37,11 +32,14 @@ public class RegisterSteps extends DriverFactory {
     @And("^I input valid city$")
     public void iInputValidCity() { registerPage.inputText("tmp", registerPage.city); }
 
-    @And("^I input valid country$")
-    public void iInputValidCountry() { registerPage.selectValue(registerPage.country, "21"); }
+    @And("^I choose valid country$")
+    public void iChooseValidCountry() { registerPage.selectValue(registerPage.country, "21"); }
 
-    @And("^I input valid state$")
-    public void iInputValidState() { registerPage.selectValue(registerPage.state, "1"); }
+    @And("^I choose invalid country$")
+    public void iChooseInvalidCountry() { registerPage.selectValue(registerPage.country, ""); }
+
+    @And("^I choose valid state$")
+    public void iChooseValidState() { registerPage.selectValue(registerPage.state, "1"); }
 
     @And("^I input valid postal code$")
     public void iInputValidPostalCode() { registerPage.inputText("00000", registerPage.postalCode); }
@@ -54,4 +52,52 @@ public class RegisterSteps extends DriverFactory {
 
     @Then("^I am redirected to my account page$")
     public void iAmRedirectedToMyAccountPage() { registerPage.iAmOnMyAccountPage(); }
+
+    @Then("^I check if the error message says that firstname is required$")
+    public void iCheckIfTheErrorMessageSaysThatFirstnameIsRequired() { registerPage.isAlertMessageCorrect("firstname is required.", registerPage.firstAlertItem);
+    }
+
+    @Then("^I check if the error message says that lastname is required$")
+    public void iCheckIfTheErrorMessageSaysThatLastnameIsRequired() { registerPage.isAlertMessageCorrect("lastname is required.", registerPage.firstAlertItem);
+    }
+
+    @Then("^I check if the error message says that password is required$")
+    public void iCheckIfTheErrorMessageSaysThatPasswordIsRequired() { registerPage.isAlertMessageCorrect("passwd is required.", registerPage.firstAlertItem);
+    }
+
+    @Then("^I check if the error message says that address is required$")
+    public void iCheckIfTheErrorMessageSaysThatAddressIsRequired() { registerPage.isAlertMessageCorrect("address1 is required.", registerPage.firstAlertItem);
+    }
+
+    @Then("^I check if the error message says that city is required$")
+    public void iCheckIfTheErrorMessageSaysThatCityIsRequired() { registerPage.isAlertMessageCorrect("city is required.", registerPage.firstAlertItem);
+    }
+
+    @Then("^I check if the error message says that country is required$")
+    public void iCheckIfTheErrorMessageSaysThatCountryIsRequired() { registerPage.isAlertMessageCorrect("id_country is required.", registerPage.firstAlertItem);
+    }
+
+    @Then("^I check if the error message says that state is required$")
+    public void iCheckIfTheErrorMessageSaysThatStateIsRequired() { registerPage.isAlertMessageCorrect("This country requires you to choose a State.", registerPage.firstAlertItem);
+    }
+
+
+    @Then("^I check if the error message says that postal code must follow specific format$")
+    public void iCheckIfTheErrorMessageSaysThatPostalCodeMustFollowSpecificFormat() { registerPage.isAlertMessageCorrect("The Zip/Postal code you've entered is invalid. It must follow this format: 00000", registerPage.firstAlertItem);
+    }
+
+    @Then("^I check if the error message says that atleast one phone number is required$")
+    public void iCheckIfTheErrorMessageSaysThatAtleastOnePhoneNumberIsRequired() { registerPage.isAlertMessageCorrect("You must register at least one phone number.", registerPage.firstAlertItem);
+    }
+
+    @Then("^I check if the error message displays all errors$")
+    public void iCheckIfTheErrorMessageDisplaysAllErrors() { registerPage.isAlertMessageCorrect("There are 8 errors\n" +
+            "You must register at least one phone number.\n" +
+            "lastname is required.\n" +
+            "firstname is required.\n" +
+            "passwd is required.\n" +
+            "address1 is required.\n" +
+            "city is required.\n" +
+            "The Zip/Postal code you've entered is invalid. It must follow this format: 00000\n" +
+            "This country requires you to choose a State.", registerPage.errorField); }
 }

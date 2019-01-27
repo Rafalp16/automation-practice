@@ -1,5 +1,6 @@
 package com.Intive.Patronage.tests.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,17 +17,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class RegisterPage {
 
-    private static String AUTHENTICATION_URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
     private WebDriver driver;
-
-    @FindBy(how = How.ID, using = "email_create")
-    public WebElement emailAddress;
-
-    @FindBy(how = How.ID, using = "SubmitCreate")
-    public WebElement submitEmail;
 
     @FindBy(how = How.CLASS_NAME, using = "alert-danger")
     public WebElement errorField;
+
+    @FindBy(how = How.XPATH, using = "//ol/li[1]")
+    public WebElement firstAlertItem;
 
     @FindBy(how = How.ID, using = "customer_firstname")
     public WebElement firstName;
@@ -71,12 +68,6 @@ public class RegisterPage {
         element.sendKeys(text);
     }
 
-    public String generateEmailAddress() {
-        long d = System.currentTimeMillis();
-        String generatedEmailAddress = d + "@xyz.com";
-        return generatedEmailAddress;
-    }
-
     public void selectValue(WebElement element, String value) {
         Select dropdown = new Select(element);
         dropdown.selectByValue(value);
@@ -85,5 +76,14 @@ public class RegisterPage {
     public void iAmOnMyAccountPage()  {
         String actualURL = driver.getCurrentUrl();
         assertThat("User should be on my account page", actualURL.equals("http://automationpractice.com/index.php?controller=my-account"));
+    }
+
+    public void isAlertMessageCorrect(String message, WebElement element) {
+        String receivedMessage = element.getText();
+        Assert.assertEquals(message, receivedMessage);
+    }
+
+    public void showContent(WebElement element) {
+        System.out.println(element.getText());
     }
 }
