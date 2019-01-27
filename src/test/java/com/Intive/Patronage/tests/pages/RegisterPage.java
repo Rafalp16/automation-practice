@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Date;
@@ -76,15 +77,13 @@ public class RegisterPage {
         return generatedEmailAddress;
     }
 
-    public void selectValue(WebElement element) {
-        element.click();
-        element.sendKeys(Keys.DOWN);
-        element.sendKeys(Keys.RETURN);
+    public void selectValue(WebElement element, String value) {
+        Select dropdown = new Select(element);
+        dropdown.selectByValue(value);
     }
 
     public void iAmOnMyAccountPage()  {
         String actualURL = driver.getCurrentUrl();
         assertThat("User should be on my account page", actualURL.equals("http://automationpractice.com/index.php?controller=my-account"));
     }
-
 }

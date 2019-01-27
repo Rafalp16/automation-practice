@@ -38,10 +38,10 @@ public class RegisterSteps extends DriverFactory {
     public void iInputValidCity() { registerPage.inputText("tmp", registerPage.city); }
 
     @And("^I input valid country$")
-    public void iInputValidCountry() { registerPage.selectValue(registerPage.country); }
+    public void iInputValidCountry() { registerPage.selectValue(registerPage.country, "21"); }
 
     @And("^I input valid state$")
-    public void iInputValidState() { registerPage.selectValue(registerPage.state); }
+    public void iInputValidState() { registerPage.selectValue(registerPage.state, "1"); }
 
     @And("^I input valid postal code$")
     public void iInputValidPostalCode() { registerPage.inputText("00000", registerPage.postalCode); }
