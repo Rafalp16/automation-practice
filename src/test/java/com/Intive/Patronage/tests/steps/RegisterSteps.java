@@ -54,40 +54,43 @@ public class RegisterSteps extends DriverFactory {
     public void iAmRedirectedToMyAccountPage() { registerPage.iAmOnMyAccountPage(); }
 
     @Then("^I check if the error message says that firstname is required$")
-    public void iCheckIfTheErrorMessageSaysThatFirstnameIsRequired() { registerPage.isAlertMessageCorrect("firstname is required.", registerPage.firstAlertItem);
+    public void iCheckIfTheErrorMessageSaysThatFirstnameIsRequired() { registerPage.isAlertMessageCorrect("There is 1 error\nfirstname is required.", registerPage.errorField);
     }
 
     @Then("^I check if the error message says that lastname is required$")
-    public void iCheckIfTheErrorMessageSaysThatLastnameIsRequired() { registerPage.isAlertMessageCorrect("lastname is required.", registerPage.firstAlertItem);
+    public void iCheckIfTheErrorMessageSaysThatLastnameIsRequired() { registerPage.isAlertMessageCorrect("There is 1 error\nlastname is required.", registerPage.errorField);
     }
 
     @Then("^I check if the error message says that password is required$")
-    public void iCheckIfTheErrorMessageSaysThatPasswordIsRequired() { registerPage.isAlertMessageCorrect("passwd is required.", registerPage.firstAlertItem);
+    public void iCheckIfTheErrorMessageSaysThatPasswordIsRequired() { registerPage.isAlertMessageCorrect("There is 1 error\npasswd is required.", registerPage.errorField);
     }
 
     @Then("^I check if the error message says that address is required$")
-    public void iCheckIfTheErrorMessageSaysThatAddressIsRequired() { registerPage.isAlertMessageCorrect("address1 is required.", registerPage.firstAlertItem);
+    public void iCheckIfTheErrorMessageSaysThatAddressIsRequired() { registerPage.isAlertMessageCorrect("There is 1 error\naddress1 is required.", registerPage.errorField);
     }
 
     @Then("^I check if the error message says that city is required$")
-    public void iCheckIfTheErrorMessageSaysThatCityIsRequired() { registerPage.isAlertMessageCorrect("city is required.", registerPage.firstAlertItem);
+    public void iCheckIfTheErrorMessageSaysThatCityIsRequired() { registerPage.isAlertMessageCorrect("There is 1 error\ncity is required.", registerPage.errorField);
     }
 
     @Then("^I check if the error message says that country is required$")
-    public void iCheckIfTheErrorMessageSaysThatCountryIsRequired() { registerPage.isAlertMessageCorrect("id_country is required.", registerPage.firstAlertItem);
+    public void iCheckIfTheErrorMessageSaysThatCountryIsRequired() { registerPage.isAlertMessageCorrect("There are 3 errors\n" +
+            "id_country is required.\n" +
+            "Country cannot be loaded with address->id_country\n" +
+            "Country is invalid", registerPage.errorField);
     }
 
     @Then("^I check if the error message says that state is required$")
-    public void iCheckIfTheErrorMessageSaysThatStateIsRequired() { registerPage.isAlertMessageCorrect("This country requires you to choose a State.", registerPage.firstAlertItem);
+    public void iCheckIfTheErrorMessageSaysThatStateIsRequired() { registerPage.isAlertMessageCorrect("There is 1 error\nThis country requires you to choose a State.", registerPage.errorField);
     }
 
 
     @Then("^I check if the error message says that postal code must follow specific format$")
-    public void iCheckIfTheErrorMessageSaysThatPostalCodeMustFollowSpecificFormat() { registerPage.isAlertMessageCorrect("The Zip/Postal code you've entered is invalid. It must follow this format: 00000", registerPage.firstAlertItem);
+    public void iCheckIfTheErrorMessageSaysThatPostalCodeMustFollowSpecificFormat() { registerPage.isAlertMessageCorrect("There is 1 error\nThe Zip/Postal code you've entered is invalid. It must follow this format: 00000", registerPage.errorField);
     }
 
-    @Then("^I check if the error message says that atleast one phone number is required$")
-    public void iCheckIfTheErrorMessageSaysThatAtleastOnePhoneNumberIsRequired() { registerPage.isAlertMessageCorrect("You must register at least one phone number.", registerPage.firstAlertItem);
+    @Then("^I check if the error message says that at least one phone number is required$")
+    public void iCheckIfTheErrorMessageSaysThatAtleastOnePhoneNumberIsRequired() { registerPage.isAlertMessageCorrect("There is 1 error\nYou must register at least one phone number.", registerPage.errorField);
     }
 
     @Then("^I check if the error message displays all errors$")

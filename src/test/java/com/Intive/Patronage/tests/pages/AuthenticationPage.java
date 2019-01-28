@@ -1,5 +1,6 @@
 package com.Intive.Patronage.tests.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,13 +13,25 @@ public class AuthenticationPage {
     private WebDriver driver;
 
     @FindBy(how = How.ID, using = "email_create")
-    public WebElement emailAddress;
+    public WebElement emailAddressCreate;
+
+    @FindBy(how = How.XPATH, using = "//ol/li[1]")
+    public WebElement alertMessage;
 
     @FindBy(how = How.ID, using = "SubmitCreate")
-    public WebElement submitEmail;
+    public WebElement submitEmailCreate;
 
-    @FindBy(how = How.CLASS_NAME, using = "alert-danger")
-    public WebElement errorField;
+    @FindBy(how = How.ID, using = "email")
+    public WebElement emailAddressSignIn;
+
+    @FindBy(how = How.ID, using = "passwd")
+    public WebElement passwordSignIn;
+
+    @FindBy(how = How.XPATH, using = "/p[contains(@class,'lost_password')]/a")
+    public WebElement forgotPasswordLink;
+
+    @FindBy(how = How.ID, using = "SubmitLogin")
+    public WebElement submitLogin;
 
     public AuthenticationPage(final WebDriver driver) {
         this.driver = driver;
@@ -37,5 +50,10 @@ public class AuthenticationPage {
         long d = System.currentTimeMillis();
         String generatedEmailAddress = d + "@xyz.com";
         return generatedEmailAddress;
+    }
+
+    public void isAlertMessageCorrect(String message, WebElement element) {
+        String receivedMessage = element.getText();
+        Assert.assertEquals(message, receivedMessage);
     }
 }

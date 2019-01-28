@@ -22,9 +22,6 @@ public class RegisterPage {
     @FindBy(how = How.CLASS_NAME, using = "alert-danger")
     public WebElement errorField;
 
-    @FindBy(how = How.XPATH, using = "//ol/li[1]")
-    public WebElement firstAlertItem;
-
     @FindBy(how = How.ID, using = "customer_firstname")
     public WebElement firstName;
 
@@ -81,9 +78,5 @@ public class RegisterPage {
     public void isAlertMessageCorrect(String message, WebElement element) {
         String receivedMessage = element.getText();
         Assert.assertEquals(message, receivedMessage);
-    }
-
-    public void showContent(WebElement element) {
-        System.out.println(element.getText());
     }
 }
