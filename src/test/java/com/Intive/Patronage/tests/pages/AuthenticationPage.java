@@ -33,6 +33,9 @@ public class AuthenticationPage {
     @FindBy(how = How.ID, using = "SubmitLogin")
     public WebElement submitLogin;
 
+    @FindBy(how = How.CLASS_NAME, using = "alert-danger")
+    public WebElement errorField;
+
     public AuthenticationPage(final WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
