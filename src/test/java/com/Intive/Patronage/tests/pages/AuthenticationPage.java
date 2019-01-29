@@ -27,7 +27,7 @@ public class AuthenticationPage {
     @FindBy(how = How.ID, using = "passwd")
     public WebElement passwordSignIn;
 
-    @FindBy(how = How.XPATH, using = "/p[contains(@class,'lost_password')]/a")
+    @FindBy(how = How.XPATH, using = "//p[contains(@class,'lost_password')]/a")
     public WebElement forgotPasswordLink;
 
     @FindBy(how = How.ID, using = "SubmitLogin")

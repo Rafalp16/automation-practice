@@ -64,4 +64,7 @@ AuthenticationSteps extends DriverFactory {
 
     @And("^I input valid password to sign in field$")
     public void iInputValidPasswordToSignInField() { authenticationPage.inputText("password123", authenticationPage.passwordSignIn); }
+
+    @And("^I click on forgot your password link$")
+    public void iClickOnForgotYourPasswordLink() { authenticationPage.forgotPasswordLink.click(); }
 }
