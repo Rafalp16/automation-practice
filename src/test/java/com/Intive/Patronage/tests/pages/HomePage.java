@@ -21,6 +21,12 @@ public class HomePage {
     @FindBy(how = How.CLASS_NAME, using = "header_user_info")
     private WebElement signInButton;
 
+    @FindBy(how = How.CLASS_NAME, using = "product-container")
+    private WebElement product;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'shopping_cart')]/a")
+    private WebElement cart;
+
     public HomePage(final WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -31,4 +37,8 @@ public class HomePage {
     public void clickOnContactUs() { contactUsLink.click(); }
 
     public void clickOnSignIn() { signInButton.click(); }
+
+    public void clickOnProduct() { product.click(); }
+
+    public void clickOnCart() { cart.click(); }
 }

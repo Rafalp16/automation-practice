@@ -21,4 +21,9 @@ public class HomeSteps extends DriverFactory{
     @When("^I click on sign in link$")
     public void iClickOnSignInLink() { homePage.clickOnSignIn(); }
 
+    @When("^I click on a product$")
+    public void iClickOnAProduct() { homePage.clickOnProduct(); }
+
+    @And("^I click on cart field$")
+    public void iClickOnCartField() { homePage.clickOnCart(); }
 }
