@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class ContactUsPage {
 
@@ -52,9 +53,8 @@ public class ContactUsPage {
         element.sendKeys(text);
     }
 
-    public void selectValue(WebElement element) {
-        element.click();
-        element.sendKeys(Keys.DOWN);
-        element.sendKeys(Keys.RETURN);
+    public void selectValue(WebElement element, String value) {
+        Select dropdown = new Select(element);
+        dropdown.selectByValue(value);
     }
 }

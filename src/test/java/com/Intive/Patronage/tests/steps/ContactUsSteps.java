@@ -40,7 +40,7 @@ public class ContactUsSteps extends DriverFactory {
     }
 
     @And("^I choose valid subject$")
-    public void iChooseValidSubject() { contactUsPage.selectValue(contactUsPage.subject) ;}
+    public void iChooseValidSubject() { contactUsPage.selectValue(contactUsPage.subject, "2") ;}
 
     @Then("^I see that message was sent and receive an success alert$")
     public void iSeeThatMessageWasSentAndReceiveAnConfirmationMessage() {
